@@ -1,174 +1,171 @@
-# TrustFlow - B2B Fintech Dashboard
+# TrustFlow Credit SDK
 
-A full-stack alternative credit scoring platform for assessing "Credit Invisible" users (Gig workers, Students) using **behavioral signals** and **account aggregator data** instead of traditional CIBIL scores.
+<p align="center">
+  <img src="https://img.shields.io/badge/SDK-v1.0.0-00fff2?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/API-REST-bf00ff?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/AI-Gemini%20Powered-00ff88?style=for-the-badge" />
+</p>
 
-![TrustFlow Dashboard](https://via.placeholder.com/800x400?text=TrustFlow+Dashboard)
+## 🚀 What is TrustFlow?
+
+**TrustFlow is an embeddable SDK** that enables lending platforms to perform AI-powered credit assessments using India's Account Aggregator framework and behavioral signals.
+
+> ⚠️ **For Hackathon Evaluators**: This repository contains a **demonstration application** showcasing the SDK capabilities. In production, the entire credit assessment flow is embedded as a white-label component into partner lending applications.
+
+---
+
+## 🎯 Problem Statement
+
+Traditional credit scoring relies on:
+- ❌ Credit bureau data (unavailable for 400M+ Indians)
+- ❌ Collateral requirements (excludes gig workers)
+- ❌ Employment verification (doesn't work for informal sector)
+
+**TrustFlow solves this by:**
+- ✅ Analyzing Account Aggregator bank data (AA Framework)
+- ✅ Behavioral psychometric signals
+- ✅ AI-powered fraud detection
+- ✅ Real-time decisioning
+
+---
+
+## 🔌 SDK Integration
+
+### Installation
+
+```bash
+npm install @trustflow/credit-sdk
+```
+
+### Quick Start
+
+```javascript
+import { TrustFlow } from '@trustflow/credit-sdk';
+
+// Initialize SDK
+const trustflow = new TrustFlow({
+    apiKey: 'your_api_key',
+    environment: 'production'
+});
+
+// Trigger credit assessment
+const assessment = await trustflow.assess({
+    aaConsentToken: userConsentToken,
+    behavioralData: quizResponses
+});
+
+// Use the result
+console.log(assessment.score);        // 300-900
+console.log(assessment.maxLoanAmount); // Recommended amount
+console.log(assessment.verdict);       // AI-generated explanation
+```
+
+---
 
 ## 🏗️ Architecture
 
 ```
-┌─────────────────┐     REST API     ┌─────────────────┐
-│                 │    (JSON)        │                 │
-│  React + Vite   │◄───────────────►│    FastAPI      │
-│  (Dashboard)    │                  │  (TrustFlow SDK)│
-│                 │                  │                 │
-└─────────────────┘                  └────────┬────────┘
-                                              │
-                                              ▼
-                                     ┌────────────────┐
-                                     │  Gemini 2.0    │
-                                     │  Flash AI      │
-                                     └────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                    PARTNER LENDING APP                       │
+│  ┌─────────────────────────────────────────────────────────┐│
+│  │              TrustFlow SDK (Embedded)                   ││
+│  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌─────────┐ ││
+│  │  │AA Consent│→ │Bank Fetch│→ │  Quiz    │→ │ Result  │ ││
+│  │  └──────────┘  └──────────┘  └──────────┘  └─────────┘ ││
+│  └─────────────────────────────────────────────────────────┘│
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   TrustFlow Backend API                      │
+│  ┌────────────┐  ┌────────────┐  ┌─────────────────────────┐│
+│  │Transaction │  │  Fraud     │  │    Gemini AI Engine     ││
+│  │ Analyzer   │  │ Detection  │  │  (Verdict Generation)   ││
+│  └────────────┘  └────────────┘  └─────────────────────────┘│
+└─────────────────────────────────────────────────────────────┘
 ```
 
-## 🚀 Quick Start
+---
+
+## 📊 Scoring Components
+
+| Component | Weight | Signals Used |
+|-----------|--------|--------------|
+| **Financial Health** | 50% | Income stability, savings ratio, expense patterns, lender count |
+| **Behavioral** | 50% | Quiz responses, impulse control, installed apps, device age |
+
+### Fraud Detection
+- 🔍 **Loan Stacking**: Detects multiple simultaneous lenders
+- 🔍 **Wash Trading**: Identifies circular transaction patterns
+- 🔍 **Risk Apps**: Flags gambling/crypto app usage
+
+---
+
+## 🛠️ API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/v1/assess` | Full credit assessment |
+| `GET` | `/api/v1/score/:id` | Retrieve assessment result |
+| `POST` | `/api/v1/fraud-check` | Standalone fraud detection |
+| `POST` | `/api/v1/webhook` | Configure result webhooks |
+
+---
+
+## 🏃 Running the Demo
 
 ### Prerequisites
 - Python 3.9+
 - Node.js 18+
-- Google Gemini API Key
+- Gemini API key (optional, for AI verdicts)
 
-### 1. Backend Setup
+### Setup
 
 ```bash
+# Backend
 cd backend
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Start the server
 uvicorn main:app --reload --port 8000
-```
 
-The API will be available at `http://localhost:8000`
-
-### 2. Frontend Setup
-
-```bash
+# Frontend
 cd frontend
-
-# Install dependencies
 npm install
-
-# Start the dev server
 npm run dev
 ```
 
-The dashboard will be available at `http://localhost:5173`
+Open **http://localhost:5173** to see the SDK demonstration.
 
-## 🔑 Environment Variables
-
-Create a `.env` file in the `backend/` directory:
-
-```env
-GOOGLE_API_KEY=your_gemini_api_key_here
-```
-
-## 📡 API Endpoints
-
-### `POST /analyze`
-Analyze a loan applicant using financial and behavioral data.
-
-**Request Body:**
-```json
-{
-  "financial": {
-    "monthly_income": 45000,
-    "monthly_expenses": 32000,
-    "lender_count": 1,
-    "savings_ratio": 0.28,
-    "transactions": []
-  },
-  "behavioral": {
-    "impulse_control_score": 7,
-    "installed_apps": ["PhonePe", "Swiggy", "Dream11"],
-    "quiz_answers": {
-      "saves_regularly": true,
-      "waits_before_purchase": true
-    }
-  }
-}
-```
-
-**Response:**
-```json
-{
-  "score": 720,
-  "risk_level": "Medium",
-  "is_fraud": false,
-  "recommendation": "APPROVE",
-  "max_loan_amount": 67500,
-  "financial_health_score": 75,
-  "behavioral_score": 62,
-  "ai_verdict": "Strong profile with disciplined savings...",
-  "reasoning": ["✓ Good savings ratio: 28%", "⚠ Risky apps: Dream11"]
-}
-```
-
-### `GET /health`
-Health check endpoint.
-
-### `GET /demo-persona`
-Returns a sample Gig Worker persona for testing.
-
-## 🛡️ Features
-
-### Backend (TrustFlow SDK)
-- **Fraud Detection**: Loan Stacking (3+ lenders), Wash Trading
-- **Behavioral Scoring**: Impulse control quiz, Risky apps detection
-- **Financial Health**: Savings ratio, Income stability analysis
-- **AI Verdict**: Gemini 2.0 Flash integration with Risk Officer persona
-
-### Frontend (Lender Dashboard)
-- **Score Gauge**: Semi-circle visualization (300-900)
-- **Fraud Alert**: Red banner for security risks
-- **Insight Cards**: Financial Health, Behavioral Stability, AI Verdict
-- **Demo Mode**: Pre-loaded Gig Worker persona
+---
 
 ## 📁 Project Structure
 
 ```
 BnGFinal/
 ├── backend/
-│   ├── main.py           # FastAPI routes
-│   ├── engine.py         # Risk analysis logic
-│   ├── models.py         # Pydantic data models
-│   ├── requirements.txt  # Python dependencies
-│   └── .env              # Environment variables
-│
+│   ├── main.py          # FastAPI server
+│   ├── engine.py        # Scoring & fraud detection engine
+│   ├── models.py        # Pydantic data models
+│   └── requirements.txt
 ├── frontend/
 │   ├── src/
-│   │   ├── App.jsx           # Main dashboard
-│   │   ├── index.css         # Tailwind + custom styles
-│   │   └── components/
-│   │       ├── Sidebar.jsx
-│   │       ├── UploadCard.jsx
-│   │       ├── FraudAlert.jsx
-│   │       ├── ScoreGauge.jsx
-│   │       └── InsightCards.jsx
-│   ├── package.json
-│   └── vite.config.js
-│
+│   │   ├── components/
+│   │   │   ├── steps/   # Wizard step components
+│   │   │   ├── SDKBanner.jsx
+│   │   │   └── ...
+│   │   ├── App.jsx      # Main wizard flow
+│   │   └── index.css    # Cyberpunk theme
+│   └── package.json
 └── README.md
 ```
 
-## 🧪 Testing
+---
 
-### Test the Backend
-```bash
-curl -X POST http://localhost:8000/analyze \
-  -H "Content-Type: application/json" \
-  -d '{"financial":{"monthly_income":45000,"monthly_expenses":30000,"lender_count":1,"savings_ratio":0.15,"transactions":[]},"behavioral":{"impulse_control_score":7,"installed_apps":["PhonePe"],"quiz_answers":{"saves_regularly":true}}}'
-```
+## 👥 Team
 
-### Test Fraud Detection
-Set `lender_count` to 5 to trigger the Loan Stacking fraud flag:
-```bash
-curl -X POST http://localhost:8000/analyze \
-  -H "Content-Type: application/json" \
-  -d '{"financial":{"monthly_income":45000,"monthly_expenses":30000,"lender_count":5,"savings_ratio":0.15,"transactions":[]},"behavioral":{"impulse_control_score":7,"installed_apps":[],"quiz_answers":{}}}'
-```
+Built for **Bits & Gigs Hackathon** 🏆
+
+---
 
 ## 📄 License
 
-MIT License
+MIT License - For demonstration purposes only.

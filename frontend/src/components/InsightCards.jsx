@@ -1,3 +1,5 @@
+import { Wallet, Brain, Bot, ClipboardList } from 'lucide-react'
+
 function InsightCards({ financialScore, behavioralScore, aiVerdict, reasoning }) {
     const getScoreStatus = (score) => {
         if (score >= 70) return 'good'
@@ -31,7 +33,9 @@ function InsightCards({ financialScore, behavioralScore, aiVerdict, reasoning })
             {/* Financial Health Card */}
             <div className="insight-card">
                 <div className="insight-card-header">
-                    <div className="insight-card-icon financial">💰</div>
+                    <div className="insight-card-icon financial">
+                        <Wallet size={24} />
+                    </div>
                     <div>
                         <div className="insight-card-title">Financial Health</div>
                         <div className="insight-card-subtitle">Income & Savings Analysis</div>
@@ -61,7 +65,9 @@ function InsightCards({ financialScore, behavioralScore, aiVerdict, reasoning })
             {/* Behavioral Stability Card */}
             <div className="insight-card">
                 <div className="insight-card-header">
-                    <div className="insight-card-icon behavioral">🧠</div>
+                    <div className="insight-card-icon behavioral">
+                        <Brain size={24} />
+                    </div>
                     <div>
                         <div className="insight-card-title">Behavioral Signals</div>
                         <div className="insight-card-subtitle">Digital Footprint Analysis</div>
@@ -91,7 +97,9 @@ function InsightCards({ financialScore, behavioralScore, aiVerdict, reasoning })
             {/* AI Verdict Card */}
             <div className="insight-card">
                 <div className="insight-card-header">
-                    <div className="insight-card-icon ai">🤖</div>
+                    <div className="insight-card-icon ai">
+                        <Bot size={24} />
+                    </div>
                     <div>
                         <div className="insight-card-title">AI Risk Assessment</div>
                         <div className="insight-card-subtitle">Powered by Gemini 2.0</div>
@@ -107,7 +115,9 @@ function InsightCards({ financialScore, behavioralScore, aiVerdict, reasoning })
             {reasoning && reasoning.length > 0 && (
                 <div className="insight-card full-width">
                     <div className="insight-card-header">
-                        <div className="insight-card-icon" style={{ background: 'var(--gray-100)' }}>📋</div>
+                        <div className="insight-card-icon" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
+                            <ClipboardList size={24} />
+                        </div>
                         <div>
                             <div className="insight-card-title">Complete Analysis Breakdown</div>
                             <div className="insight-card-subtitle">All factors considered in this assessment</div>

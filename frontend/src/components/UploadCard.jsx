@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { Upload, UserCircle, RotateCcw, Loader2 } from 'lucide-react'
 
 function UploadCard({ onLoadDemo, onReset, onUpload, isLoading, personaLoaded, demoData }) {
     const fileInputRef = useRef(null)
@@ -27,13 +28,15 @@ function UploadCard({ onLoadDemo, onReset, onUpload, isLoading, personaLoaded, d
         return (
             <div className="upload-section">
                 <div className="upload-card">
-                    <h2 className="upload-card-title">✅ Analysis Complete</h2>
+                    <h2 className="upload-card-title">Analysis Complete</h2>
                     <p className="upload-card-description">
                         The applicant data has been processed. View the detailed results below.
                     </p>
                     <div className="upload-actions">
                         <button className="btn btn-secondary" onClick={onReset}>
-                            <span className="btn-icon">🔄</span>
+                            <span className="btn-icon">
+                                <RotateCcw size={18} />
+                            </span>
                             Analyze Another Applicant
                         </button>
                     </div>
@@ -64,7 +67,9 @@ function UploadCard({ onLoadDemo, onReset, onUpload, isLoading, personaLoaded, d
                         onClick={triggerFileUpload}
                         disabled={isLoading}
                     >
-                        <span className="btn-icon">📁</span>
+                        <span className="btn-icon">
+                            <Upload size={18} />
+                        </span>
                         Upload JSON File
                     </button>
 
@@ -75,12 +80,16 @@ function UploadCard({ onLoadDemo, onReset, onUpload, isLoading, personaLoaded, d
                     >
                         {isLoading ? (
                             <>
-                                <span className="loading-spinner" style={{ width: 18, height: 18, borderWidth: 2 }}></span>
+                                <span className="btn-icon" style={{ animation: 'spin 1s linear infinite' }}>
+                                    <Loader2 size={18} />
+                                </span>
                                 Processing...
                             </>
                         ) : (
                             <>
-                                <span className="btn-icon">🎭</span>
+                                <span className="btn-icon">
+                                    <UserCircle size={18} />
+                                </span>
                                 Try Demo Profile
                             </>
                         )}

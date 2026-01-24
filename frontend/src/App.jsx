@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Bell, Settings, BarChart3, CheckCircle, XCircle } from 'lucide-react'
 import './index.css'
 import Sidebar from './components/Sidebar'
 import UploadCard from './components/UploadCard'
@@ -117,8 +118,12 @@ function App() {
         <header className="top-header">
           <h1 className="top-header-title">Credit Assessment</h1>
           <div className="top-header-actions">
-            <button className="header-btn" title="Notifications">🔔</button>
-            <button className="header-btn" title="Settings">⚙️</button>
+            <button className="header-btn" title="Notifications">
+              <Bell size={20} />
+            </button>
+            <button className="header-btn" title="Settings">
+              <Settings size={20} />
+            </button>
           </div>
         </header>
 
@@ -144,7 +149,9 @@ function App() {
           {/* Error Display */}
           {error && (
             <div className="error-banner">
-              <span className="error-banner-icon">⚠️</span>
+              <span className="error-banner-icon">
+                <XCircle size={20} />
+              </span>
               <span className="error-banner-text">{error}</span>
             </div>
           )}
@@ -185,16 +192,16 @@ function App() {
                     </div>
                   </div>
                   <div style={{ display: 'grid', gap: '16px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--gray-100)' }}>
-                      <span style={{ color: 'var(--gray-500)', fontSize: '14px' }}>Financial Score</span>
-                      <span style={{ fontWeight: 600, color: 'var(--gray-900)' }}>{analysisResult.financial_health_score}/100</span>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                      <span style={{ color: 'var(--text-tertiary)', fontSize: '14px' }}>Financial Score</span>
+                      <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{analysisResult.financial_health_score}/100</span>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--gray-100)' }}>
-                      <span style={{ color: 'var(--gray-500)', fontSize: '14px' }}>Behavioral Score</span>
-                      <span style={{ fontWeight: 600, color: 'var(--gray-900)' }}>{analysisResult.behavioral_score}/100</span>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                      <span style={{ color: 'var(--text-tertiary)', fontSize: '14px' }}>Behavioral Score</span>
+                      <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{analysisResult.behavioral_score}/100</span>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--gray-100)' }}>
-                      <span style={{ color: 'var(--gray-500)', fontSize: '14px' }}>Risk Level</span>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                      <span style={{ color: 'var(--text-tertiary)', fontSize: '14px' }}>Risk Level</span>
                       <span style={{
                         fontWeight: 600,
                         color: analysisResult.risk_level === 'Low' ? 'var(--success)' :
@@ -202,9 +209,19 @@ function App() {
                       }}>{analysisResult.risk_level}</span>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0' }}>
-                      <span style={{ color: 'var(--gray-500)', fontSize: '14px' }}>Fraud Detected</span>
-                      <span style={{ fontWeight: 600, color: analysisResult.is_fraud ? 'var(--danger)' : 'var(--success)' }}>
-                        {analysisResult.is_fraud ? 'Yes' : 'No'}
+                      <span style={{ color: 'var(--text-tertiary)', fontSize: '14px' }}>Fraud Detected</span>
+                      <span style={{
+                        fontWeight: 600,
+                        color: analysisResult.is_fraud ? 'var(--danger)' : 'var(--success)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px'
+                      }}>
+                        {analysisResult.is_fraud ? (
+                          <><XCircle size={16} /> Yes</>
+                        ) : (
+                          <><CheckCircle size={16} /> No</>
+                        )}
                       </span>
                     </div>
                   </div>
@@ -225,7 +242,9 @@ function App() {
           {!analysisResult && !isLoading && !personaLoaded && (
             <div className="card">
               <div className="empty-state">
-                <div className="empty-state-icon">📊</div>
+                <div className="empty-state-icon">
+                  <BarChart3 size={40} />
+                </div>
                 <h3 className="empty-state-title">No Analysis Yet</h3>
                 <p className="empty-state-text">
                   Upload applicant data or try the demo profile to see our AI-powered credit assessment in action.

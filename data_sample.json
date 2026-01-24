@@ -1,0 +1,52 @@
+{
+  "financial": {
+    "monthly_income": 85000,
+    "monthly_expenses": 25000,
+    "lender_count": 0,
+    "savings_ratio": 0.70,
+    "income_stability": 0.9,
+    "average_balance": 150000,
+    "transactions": [
+      {
+        "date": "2024-01-01",
+        "amount": 85000,
+        "type": "credit",
+        "category": "salary",
+        "merchant": "Tech Corp Inc"
+      },
+      {
+        "date": "2024-01-05",
+        "amount": 2000,
+        "type": "debit",
+        "category": "utilities",
+        "merchant": "Electric Co"
+      },
+      {
+        "date": "2024-01-10",
+        "amount": 15000,
+        "type": "debit",
+        "category": "investment",
+        "merchant": "Vanguard"
+      }
+    ]
+  },
+  "behavioral": {
+    "impulse_control_score": 9,
+    "installed_apps": [
+      "LinkedIn",
+      "Slack",
+      "Zoom",
+      "Google Sheets",
+      "Calculator"
+    ],
+    "quiz_answers": {
+      "saves_regularly": true,
+      "waits_before_purchase": true,
+      "has_budget": true,
+      "tracks_expenses": true,
+      "avoids_impulsive_buying": true
+    },
+    "device_age_months": 24,
+    "app_usage_hours_daily": 2
+  }
+}

@@ -1,7 +1,11 @@
+import { ShieldAlert } from 'lucide-react'
+
 function FraudAlert({ fraudFlags }) {
     return (
         <div className="fraud-alert">
-            <div className="fraud-alert-icon">🚨</div>
+            <div className="fraud-alert-icon">
+                <ShieldAlert size={28} />
+            </div>
             <div className="fraud-alert-content">
                 <h3>Security Risk Detected — Application Blocked</h3>
                 <p>

@@ -1,0 +1,67 @@
+{
+    "financial": {
+        "monthly_income": 40000,
+        "monthly_expenses": 38000,
+        "lender_count": 5,
+        "savings_ratio": 0.05,
+        "income_stability": 0.3,
+        "average_balance": 5000,
+        "transactions": [
+            {
+                "date": "2024-01-10",
+                "amount": 40000,
+                "type": "credit",
+                "category": "salary",
+                "merchant": "Employer"
+            },
+            {
+                "date": "2024-01-11",
+                "amount": 15000,
+                "type": "debit",
+                "category": "loan_payment",
+                "merchant": "Lender A"
+            },
+            {
+                "date": "2024-01-12",
+                "amount": 10000,
+                "type": "debit",
+                "category": "loan_payment",
+                "merchant": "Lender B"
+            },
+            {
+                "date": "2024-01-13",
+                "amount": 8000,
+                "type": "debit",
+                "category": "loan_payment",
+                "merchant": "Lender C"
+            },
+            {
+                "date": "2024-01-15",
+                "amount": 5000,
+                "type": "debit",
+                "category": "gambling",
+                "merchant": "Dream11"
+            }
+        ]
+    },
+    "behavioral": {
+        "impulse_control_score": 2,
+        "installed_apps": [
+            "Dream11",
+            "bet365",
+            "Binance",
+            "WazirX",
+            "Teen Patti Gold",
+            "Rummy Circle"
+        ],
+        "quiz_answers": {
+            "saves_regularly": false,
+            "waits_before_purchase": false,
+            "has_budget": false,
+            "tracks_expenses": false,
+            "avoids_impulsive_buying": false
+        },
+        "device_age_months": 3,
+        "app_usage_hours_daily": 8
+    }
+}

@@ -1,0 +1,59 @@
+{
+    "financial": {
+        "monthly_income": 55000,
+        "monthly_expenses": 35000,
+        "lender_count": 0,
+        "savings_ratio": 0.36,
+        "income_stability": 0.85,
+        "average_balance": 40000,
+        "transactions": [
+            {
+                "date": "2024-01-15",
+                "amount": 55000,
+                "type": "credit",
+                "category": "salary",
+                "merchant": "TechCorp"
+            },
+            {
+                "date": "2024-01-16",
+                "amount": 12000,
+                "type": "debit",
+                "category": "rent",
+                "merchant": "Landlord"
+            },
+            {
+                "date": "2024-01-18",
+                "amount": 4000,
+                "type": "debit",
+                "category": "utilities",
+                "merchant": "BESCOM"
+            },
+            {
+                "date": "2024-01-20",
+                "amount": 8000,
+                "type": "debit",
+                "category": "groceries",
+                "merchant": "BigBasket"
+            }
+        ]
+    },
+    "behavioral": {
+        "impulse_control_score": 8,
+        "installed_apps": [
+            "PhonePe",
+            "Google Pay",
+            "Swiggy",
+            "LinkedIn",
+            "Udemy"
+        ],
+        "quiz_answers": {
+            "saves_regularly": true,
+            "waits_before_purchase": true,
+            "has_budget": true,
+            "tracks_expenses": true,
+            "avoids_impulsive_buying": true
+        },
+        "device_age_months": 24,
+        "app_usage_hours_daily": 3.5
+    }
+}

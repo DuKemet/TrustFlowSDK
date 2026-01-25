@@ -146,7 +146,8 @@ const BANKS = {
   pnb: 'Punjab National Bank'
 }
 
-const API_BASE = 'http://localhost:8000'
+// Use environment variable in production, fallback to localhost for development
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1)

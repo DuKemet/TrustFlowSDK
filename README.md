@@ -112,7 +112,39 @@ console.log(assessment.verdict);       // AI-generated explanation
 
 ---
 
-## 🏃 Running the Demo
+## 🚀 Deployment
+
+### Step 1: Deploy Backend (Render)
+
+1. Push code to GitHub
+2. Go to [render.com](https://render.com) → New Web Service
+3. Connect your GitHub repo, set **Root Directory** to `backend`
+4. Set:
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
+5. Add environment variables:
+   - `GOOGLE_API_KEY` = Your Gemini API key
+   - `ALLOWED_ORIGINS` = `https://your-app.vercel.app` (add after frontend deploy)
+6. Deploy!
+
+### Step 2: Deploy Frontend (Vercel)
+
+1. Go to [vercel.com](https://vercel.com) → Import Project
+2. Connect your GitHub repo, set **Root Directory** to `frontend`
+3. Add environment variable:
+   - `VITE_API_URL` = `https://your-backend.onrender.com`
+4. Deploy!
+
+### Step 3: Update CORS
+
+After both are deployed:
+1. Go back to Render
+2. Update `ALLOWED_ORIGINS` to include your Vercel URL
+3. Redeploy backend
+
+---
+
+## 🏃 Running Locally
 
 ### Prerequisites
 - Python 3.9+
